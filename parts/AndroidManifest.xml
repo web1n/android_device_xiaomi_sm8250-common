@@ -100,6 +100,20 @@
                 android:resource="@string/thermal_summary" />
         </activity>
 
+        <activity
+            android:name=".gestures.FpDoubleTapActivity"
+            android:label="@string/fp_double_tap_title"
+            android:theme="@style/Theme.SubSettingsBase"
+            android:enabled="@*android:bool/config_is_powerbutton_fps"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.gestures" />
+        </activity>
+
     </application>
 
 </manifest>
