@@ -82,6 +82,10 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             sed -i 's|ro.product.vendor.device|ro.vendor.radio.midevice|g' "${2}"
             ;;
+        vendor/lib64/libwvhidl.so)
+            [ "$2" = "" ] && return 0
+            "${PATCHELF}" --replace-needed "libcrypto.so" "libcrypto-v33.so" "${2}"
+            ;;
         *)
             return 1
             ;;
