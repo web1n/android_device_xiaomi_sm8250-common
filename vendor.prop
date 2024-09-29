@@ -79,7 +79,6 @@ vendor.audio.feature.usb_offload_burst_mode.enable=true
 vendor.audio.feature.usb_offload_sidetone_volume.enable=false
 vendor.audio.feature.vbat.enable=true
 vendor.audio.feature.wsa.enable=false
-vendor.audio.flac.sw.decoder.24bit=true
 vendor.audio.hal.output.suspend.supported=false
 vendor.audio.hw.aac.encoder=true
 vendor.audio.offload.gapless.enabled=true
@@ -208,10 +207,6 @@ persist.vendor.hvdcp_opti.disallowed=1
 
 # Keystore
 ro.hardware.keystore_desede=true
-
-# Media
-debug.stagefright.ccodec=4
-debug.stagefright.omx_default_rank=0
 
 # NFC
 ro.camera.notify_nfc=1

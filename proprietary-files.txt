@@ -63,7 +63,7 @@ vendor/etc/init/vendor.qti.cdsprpc-service.rc
 vendor/lib/libcdsprpc.so
 vendor/lib/libfastcrc.so
 vendor/lib/libfastcvdsp_stub.so
--vendor/lib/libfastcvopt.so
+vendor/lib/libfastcvopt.so
 vendor/lib/libmdsprpc.so
 vendor/lib/libsdsprpc.so
 vendor/lib/libsysmon_cdsp_skel.so
@@ -71,8 +71,9 @@ vendor/lib64/libcdfw.so
 vendor/lib64/libcdfw_remote_api.so
 vendor/lib64/libcdsp_default_listener.so
 vendor/lib64/libcdsprpc.so
+vendor/lib64/libcdsprpc_system.so
 vendor/lib64/libfastcvdsp_stub.so
--vendor/lib64/libfastcvopt.so
+vendor/lib64/libfastcvopt.so
 vendor/lib64/libmdsprpc.so
 vendor/lib64/libsdsprpc.so
 vendor/lib64/libsysmon_cdsp_skel.so
@@ -111,12 +112,12 @@ vendor/etc/cne/mwqem.conf
 vendor/etc/cne/profileMwqem.xml
 vendor/etc/default-permissions/com.qualcomm.qti.cne.xml
 vendor/etc/init/cnd.rc
-vendor/lib64/libcne.so
+vendor/lib64/libcne.so;DISABLE_CHECKELF
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneoplookup.so
 vendor/lib64/libcneqmiutils.so
 vendor/lib64/libwms.so
-vendor/lib64/libwqe.so
+vendor/lib64/libwqe.so;DISABLE_CHECKELF
 vendor/lib64/libxml.so
 vendor/lib64/vendor.qti.data.factory@2.0.so
 vendor/lib64/vendor.qti.data.factory@2.1.so
@@ -151,8 +152,6 @@ vendor/lib64/libhdr_tm.so
 vendor/lib64/libdisplayqos.so
 vendor/lib64/libdisplayskuutils.so
 vendor/lib64/libgame_enhance.so
-vendor/lib64/libhdrdynamic.so
-vendor/lib64/libhdrdynamicootf.so
 vendor/lib64/libqseed3.so
 vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-colormgr-algo.so
@@ -191,7 +190,7 @@ system_ext/lib64/libdpmtcm.so
 system_ext/lib64/vendor.qti.diaghal@1.0.so
 vendor/bin/dpmQmiMgr
 vendor/etc/init/dpmQmiMgr.rc
-vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so;MODULE_SUFFIX=_vendor
 vendor/lib64/libdpmqmihal.so
 
 # DRM (QSEECom)
@@ -304,14 +303,18 @@ vendor/lib/hw/vulkan.adreno.so
 vendor/lib64/hw/vulkan.adreno.so
 
 # GNSS
+vendor/app/CACertService/CACertService.apk
 vendor/bin/loc_launcher
-vendor/bin/lowi-server
+vendor/bin/lowi-server;DISABLE_CHECKELF
 vendor/bin/xtra-daemon
 vendor/bin/xtwifi-client
 vendor/bin/xtwifi-inet-agent
 vendor/etc/cacert_location.pem
 vendor/etc/xtra_root_cert.pem
 vendor/lib64/libaoa.so
+vendor/lib64/libasn1cper.so
+vendor/lib64/libasn1crt.so
+vendor/lib64/libasn1crtx.so
 vendor/lib64/libcacertclient.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libgdtap.so
@@ -328,6 +331,8 @@ vendor/lib64/liblowi_wifihal.so
 vendor/lib64/libqcc_file_agent.so
 vendor/lib64/libqdma_file_agent.so
 vendor/lib64/libxtadapter.so
+vendor/lib64/libxtwifi_server_protocol.so
+vendor/lib64/libxtwifi_server_protocol_uri_v3.so
 vendor/lib64/vendor.qti.gnss@1.0.so
 vendor/lib64/vendor.qti.gnss@1.1.so
 vendor/lib64/vendor.qti.gnss@1.2.so
@@ -335,6 +340,7 @@ vendor/lib64/vendor.qti.gnss@2.0.so
 vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.gnss@4.0.so
+vendor/lib64/vendor.qti.hardware.cacert@1.0.so
 
 # GNSS configs
 vendor/etc/izat.conf
@@ -353,7 +359,7 @@ system_ext/lib64/vendor.qti.imsrtpservice@3.0.so
 system_ext/lib64/vendor.qti.imsrtpservice@3.1.so
 system_ext/priv-app/ims/ims.apk|15ff2ffe456ec58bd10ff9f947899f225df42f09
 vendor/bin/ims_rtp_daemon
-vendor/bin/imsdatadaemon
+vendor/bin/imsdatadaemon;DISABLE_CHECKELF
 vendor/bin/imsqmidaemon
 vendor/bin/imsrcsd
 vendor/etc/init/ims_rtp_daemon.rc
@@ -368,6 +374,7 @@ vendor/lib64/com.qualcomm.qti.imscmservice@2.2.so
 vendor/lib64/com.qualcomm.qti.uceservice@2.0.so
 vendor/lib64/com.qualcomm.qti.uceservice@2.1.so
 vendor/lib64/com.qualcomm.qti.uceservice@2.2.so
+vendor/lib64/com.qualcomm.qti.uceservice@2.3.so
 vendor/lib64/lib-imscmservice.so
 vendor/lib64/lib-imsdpl.so
 vendor/lib64/lib-imsqimf.so
@@ -393,12 +400,13 @@ vendor/lib64/vendor.qti.hardware.radio.ims@1.7.so
 vendor/lib64/vendor.qti.ims.callcapability@1.0.so
 vendor/lib64/vendor.qti.ims.callinfo@1.0.so
 vendor/lib64/vendor.qti.ims.factory@1.0.so
+vendor/lib64/vendor.qti.ims.factory@1.1.so
 vendor/lib64/vendor.qti.ims.rcsconfig@1.0.so
 vendor/lib64/vendor.qti.ims.rcsconfig@1.1.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.0.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
-vendor/lib64/vendor.qti.imsrtpservice@3.0.so
+vendor/lib64/vendor.qti.imsrtpservice@3.0.so;MODULE_SUFFIX=_vendor
 
 # IRQ balance
 vendor/bin/msm_irqbalance
@@ -430,24 +438,10 @@ vendor/lib/libsmwrapper.so
 # Media
 system_ext/lib/libmmosal.so
 system_ext/lib/libmmparser_lite.so
-system_ext/lib64/libmmosal.so
-system_ext/lib64/libmmparser_lite.so
-vendor/lib/libmmosal.so
-vendor/lib64/libmmosal.so
+vendor/lib/libmmosal.so;MODULE_SUFFIX=_vendor
 
 # Media configs
-odm/etc/media_profiles_V1_0.xml
-vendor/etc/media_codecs.xml
-vendor/etc/media_codecs_c2.xml
-vendor/etc/media_codecs_kona.xml
-vendor/etc/media_codecs_kona_vendor.xml
-vendor/etc/media_codecs_performance_c2.xml
-vendor/etc/media_codecs_performance_kona.xml
-vendor/etc/media_codecs_performance_kona_vendor.xml
-vendor/etc/media_codecs_system_default.xml
-vendor/etc/media_profiles.xml
-vendor/etc/media_profiles_kona.xml
-vendor/etc/media_profiles_vendor.xml
+vendor/etc/media_profiles_kona.xml:vendor/etc/media_profiles_V1_0.xml
 vendor/etc/system_properties.xml
 
 # Mink-Lowi Interface daemon
@@ -470,50 +464,19 @@ vendor/lib64/unnhal-acc-hvx.so
 vendor/bin/nv_mac
 
 # OMX
-vendor/lib/libAlacSwDec.so
-vendor/lib/libApeSwDec.so
-vendor/lib/libFlacSwDec.so
-vendor/lib/libMpeg4SwEncoder.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAlacDec.so
-vendor/lib/libOmxAlacDecSw.so
 vendor/lib/libOmxAmrDec.so
 vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxApeDec.so
-vendor/lib/libOmxApeDecSw.so
 vendor/lib/libOmxDsdDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxG711Dec.so
-vendor/lib/libOmxMpeghDecSw.so
-vendor/lib/libOmxMpeghEncSw.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxSwVdec.so
-vendor/lib/libOmxSwVencMpeg4.so
-vendor/lib/libOmxVideoDSMode.so
-vendor/lib/libOmxVpp.so
+vendor/lib/libOmxVideoDSMode.so;DISABLE_CHECKELF
+vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libdsd2pcm.so
-vendor/lib/libswvdec.so
-vendor/lib64/libAlacSwDec.so
-vendor/lib64/libApeSwDec.so
-vendor/lib64/libFlacSwDec.so
-vendor/lib64/libMpeg4SwEncoder.so
-vendor/lib64/libOmxAacDec.so
-vendor/lib64/libOmxAlacDec.so
-vendor/lib64/libOmxAlacDecSw.so
-vendor/lib64/libOmxAmrDec.so
-vendor/lib64/libOmxAmrwbplusDec.so
-vendor/lib64/libOmxApeDec.so
-vendor/lib64/libOmxApeDecSw.so
-vendor/lib64/libOmxEvrcDec.so
-vendor/lib64/libOmxG711Dec.so
-vendor/lib64/libOmxMpeghEncSw.so
-vendor/lib64/libOmxQcelp13Dec.so
-vendor/lib64/libOmxSwVdec.so
-vendor/lib64/libOmxSwVencMpeg4.so
-vendor/lib64/libOmxVpp.so
-vendor/lib64/libOmxWmaDec.so
-vendor/lib64/libswvdec.so
 
 # Peripheral manager
 vendor/bin/pm-proxy
@@ -544,21 +507,6 @@ vendor/bin/qmipriod
 vendor/etc/init/qmipriod.rc
 vendor/etc/sec_config
 vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqcmaputils.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_helper.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
 vendor/lib64/libdiag.so
 vendor/lib64/libdsi_netctrl.so
 vendor/lib64/libdsutils.so
@@ -574,6 +522,7 @@ vendor/lib64/libqmi_client_qmux.so
 vendor/lib64/libqmi_common_so.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
+vendor/lib64/libqmi_legacy.so
 vendor/lib64/libqmiservices.so
 
 # RIL
@@ -639,7 +588,6 @@ vendor/lib64/libril-qc-hal-qmi.so
 vendor/lib64/libril-qc-logger.so
 vendor/lib64/libril-qc-ltedirectdisc.so
 vendor/lib64/libril-qc-radioconfig.so
-vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/librilqmiservices.so
 vendor/lib64/libsettings.so
 vendor/lib64/libsystem_health_mon.so
@@ -719,8 +667,8 @@ vendor/etc/init/init.mi_thermald.rc
 # Thermal engine
 vendor/bin/thermal-engine
 vendor/etc/init/init_thermal-engine.rc
--vendor/lib/libthermalclient.so
--vendor/lib64/libthermalclient.so
+vendor/lib/libthermalclient.so
+vendor/lib64/libthermalclient.so
 
 # Time services
 vendor/app/TimeService/TimeService.apk
@@ -770,7 +718,6 @@ vendor/etc/wifi/aoa_cldb_swl14.bin
 # WiFi Display
 framework/WfdCommon.jar
 system_ext/bin/wfdservice
-system_ext/bin/wfdservice64
 system_ext/etc/init/wfdservice.rc
 system_ext/etc/permissions/wfd-system-ext-privapp-permissions-qti.xml
 system_ext/etc/seccomp_policy/wfdservice.policy
@@ -796,22 +743,6 @@ system_ext/lib/libwfduibcsinkinterface.so
 system_ext/lib/libwfduibcsrc.so
 system_ext/lib/libwfduibcsrcinterface.so
 system_ext/lib/vendor.qti.hardware.wifidisplaysession@1.0.so
-system_ext/lib64/libmmrtpdecoder.so
-system_ext/lib64/libmmrtpencoder.so
-system_ext/lib64/libwfdclient.so
-system_ext/lib64/libwfdcommonutils.so
-system_ext/lib64/libwfdconfigutils.so
-system_ext/lib64/libwfddisplayconfig.so
-system_ext/lib64/libwfdmminterface.so
-system_ext/lib64/libwfdmmsink.so
-system_ext/lib64/libwfdnative.so
-system_ext/lib64/libwfdrtsp.so
-system_ext/lib64/libwfdsinksm.so
-system_ext/lib64/libwfduibcinterface.so
-system_ext/lib64/libwfduibcsink.so
-system_ext/lib64/libwfduibcsinkinterface.so
-system_ext/lib64/libwfduibcsrc.so
-system_ext/lib64/libwfduibcsrcinterface.so
 system_ext/priv-app/WfdService/WfdService.apk
 vendor/bin/wifidisplayhalservice
 vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc
@@ -829,7 +760,7 @@ vendor/lib/libwfdhdcpcp.so
 vendor/lib/libwfdhdcpservice_proprietary.so
 vendor/lib/libwfdmminterface_proprietary.so
 vendor/lib/libwfdmmservice_proprietary.so
-vendor/lib/libwfdmmsrc_proprietary.so
+vendor/lib/libwfdmmsrc_proprietary.so;DISABLE_CHECKELF
 vendor/lib/libwfdmodulehdcpsession.so
 vendor/lib/libwfdrtsp_proprietary.so
 vendor/lib/libwfdsessionmodule.so
@@ -841,5 +772,5 @@ vendor/lib/libwfduibcsinkinterface_proprietary.so
 vendor/lib/libwfduibcsrc_proprietary.so
 vendor/lib/libwfduibcsrcinterface_proprietary.so
 vendor/lib/libwfdutils_proprietary.so
-vendor/lib/vendor.qti.hardware.wifidisplaysession@1.0.so
+vendor/lib/vendor.qti.hardware.wifidisplaysession@1.0.so;MODULE_SUFFIX=_vendor
 vendor/lib/vendor.qti.hardware.wifidisplaysessionl@1.0-halimpl.so
