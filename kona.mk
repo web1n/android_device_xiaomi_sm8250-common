@@ -232,7 +232,7 @@ PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.xiaomi
+    android.hardware.light-service.lineage
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -276,6 +276,11 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(LOCAL_PATH)/overlay/packages/apps/Car
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+PRODUCT_PACKAGES += \
+    vendor_bt_firmware_mountpoint \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
@@ -295,7 +300,8 @@ PRODUCT_PACKAGES += \
 # Rootdir
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    fstab.qcom_ramdisk
+    fstab.qcom.ramdisk \
+    fstab.qcom.vendor_ramdisk
 
 PRODUCT_PACKAGES += \
     init.class_main.sh \
