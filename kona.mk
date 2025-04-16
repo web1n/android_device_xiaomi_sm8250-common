@@ -170,7 +170,9 @@ PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
 # Fingerprint
-ifneq ($(TARGET_IS_TABLET),true)
+TARGET_SUPPORTS_FINGERPRINT ?= $(if $(filter true,$(TARGET_IS_TABLET)),false,true)
+
+ifeq ($(TARGET_SUPPORTS_FINGERPRINT),true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi
 
@@ -199,8 +201,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # IFAAService
+ifeq ($(TARGET_SUPPORTS_FINGERPRINT),true)
 PRODUCT_PACKAGES += \
     IFAAService
+endif
 
 # ION
 $(call soong_config_set_bool,libion,legacy_impl,true)
