@@ -71,6 +71,10 @@ module = ExtractUtilsModule(
     namespace_imports=namespace_imports,
 )
 
+module.add_proprietary_file('proprietary-files-fingerprint.txt').add_copy_files_guard(
+    'TARGET_SUPPORTS_FINGERPRINT', 'true'
+)
+
 module.add_proprietary_file('proprietary-files-phone.txt').add_copy_files_guard(
     'TARGET_IS_TABLET', 'true', invert=True
 )

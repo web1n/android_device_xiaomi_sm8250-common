@@ -180,7 +180,9 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
-ifneq ($(TARGET_IS_TABLET),true)
+TARGET_SUPPORTS_FINGERPRINT ?= $(if $(filter true,$(TARGET_IS_TABLET)),false,true)
+
+ifeq ($(TARGET_SUPPORTS_FINGERPRINT),true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi
 
@@ -209,8 +211,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # IFAAService
+ifeq ($(TARGET_SUPPORTS_FINGERPRINT),true)
 PRODUCT_PACKAGES += \
     IFAAService
+endif
 
 # IPACM
 PRODUCT_PACKAGES += \
