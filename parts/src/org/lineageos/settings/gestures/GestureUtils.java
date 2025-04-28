@@ -16,7 +16,11 @@
 
 package org.lineageos.settings.gestures;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.hardware.fingerprint.FingerprintManager;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
@@ -27,6 +31,9 @@ public class GestureUtils {
     static final String SETTING_KEY_ENABLE = "fp_double_tap_enable";
     static final String SETTING_KEY_ACTION = "fp_double_tap_action";
 
+    private static final String PROP_FINGERPRINT_VENDOR = "persist.vendor.sys.fp.vendor";
+    private static final String PROP_FINGERPRINT_GESTURE_VENDORS = "persist.vendor.fingerprint.powerfps_navigation_vendors";
+
     public static boolean isFpDoubleTapEnabled(Context context) {
         return Settings.System.getIntForUser(context.getContentResolver(), SETTING_KEY_ENABLE,
                 0, UserHandle.USER_CURRENT) == 1;
@@ -35,6 +42,50 @@ public class GestureUtils {
     public static int getFpDoubleTapAction(Context context) {
         return Settings.System.getIntForUser(context.getContentResolver(), SETTING_KEY_ACTION,
                 1, UserHandle.USER_CURRENT);
+    }
+
+    public static boolean isSideFingerprintSensor(Context context) {
+        FingerprintManager fingerprintManager = context.getSystemService(FingerprintManager.class);
+        return fingerprintManager.getSensorPropertiesInternal()
+                .stream().anyMatch(prop -> prop.isAnySidefpsType());
+    }
+
+    public static boolean isSupportFpGesture(Context context) {
+        String fpVendor = SystemProperties.get(PROP_FINGERPRINT_VENDOR, "");
+        String supportGestureVendors = SystemProperties.get(PROP_FINGERPRINT_GESTURE_VENDORS, "");
+
+        if (fpVendor == null || fpVendor.isEmpty()) {
+            Log.w(TAG, "Fingerprint vendor property is not set");
+            return false;
+        }
+        if (supportGestureVendors == null || supportGestureVendors.isEmpty()) {
+            Log.w(TAG, "Fingerprint gesture vendors property is not set");
+            return false;
+        }
+
+        String[] vendors = supportGestureVendors.split(",");
+        for (String vendor : vendors) {
+            if (vendor.equals(fpVendor)) {
+                Log.i(TAG, "Fingerprint vendor " + fpVendor + " supports gestures");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void updateFpDoubleTapComponent(Context context) {
+        final ComponentName component = new ComponentName(
+                context.getPackageName(), FpDoubleTapActivity.class.getName());
+        final boolean sideFps = isSideFingerprintSensor(context);
+        final boolean supportFpGesture = isSupportFpGesture(context);
+
+        context.getPackageManager().setComponentEnabledSetting(
+                component,
+                sideFps && supportFpGesture
+                        ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+        );
     }
 
 }
