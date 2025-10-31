@@ -54,7 +54,6 @@ public class FpDoubleTapFragment extends SettingsBasePreferenceFragment implemen
         mSwitchBar.setChecked(enabled);
 
         mActionPref = (ListPreference) findPreference(PREF_ACTION);
-        mActionPref.setEnabled(enabled);
         mActionPref.setOnPreferenceChangeListener(this);
         mActionPref.setValue(Integer.toString(action));
     }
