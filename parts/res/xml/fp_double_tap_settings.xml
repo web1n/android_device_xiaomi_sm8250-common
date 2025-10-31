@@ -21,6 +21,7 @@
     <com.android.settingslib.widget.MainSwitchPreference
         android:defaultValue="false"
         android:key="fp_double_tap_enable"
+        android:persistent="false"
         android:title="@string/fp_double_tap_enable" />
 
     <ListPreference
@@ -29,6 +30,7 @@
         android:entries="@array/fp_double_tap_action_entries"
         android:entryValues="@array/fp_double_tap_action_values"
         android:key="fp_double_tap_action"
+        android:persistent="false"
         android:title="@string/fp_double_tap_action"
         android:summary="%s" />
 
